@@ -64,7 +64,7 @@ def train(batch_num=10000, batch_size=64, latent_dim=100, image_shape=(96,96,3))
                   metrics=['accuracy'])
 
     dataset = (tf.data.Dataset.list_files('./faces/*.jpg')
-        .map(lambda x: (tf.cast(tf.image.decode_jpeg(tf.read_file(x)), tf.float64)/127.5-1,
+        .map(lambda x: (tf.cast(tf.image.decode_jpeg(tf.io.read_file(x)), tf.float64)/127.5-1,
                         tf.ones(1, tf.int32)))
         .batch(batch_size)
         .repeat())
