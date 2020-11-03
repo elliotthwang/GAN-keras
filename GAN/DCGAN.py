@@ -68,7 +68,7 @@ def train(batch_num=10000, batch_size=64, latent_dim=100, image_shape=(96,96,3))
                         tf.ones(1, tf.int32)))
         .batch(batch_size)
         .repeat())
-    iterator = dataset.make_one_shot_iterator()
+    iterator =  tf.compat.v1.data.make_one_shot_iterator(dataset)
     (batch_image, target) = iterator.get_next()
     
     tv_plot = tv.train.PlotMetrics(columns=2, wait_num=50)
